@@ -69,18 +69,69 @@ l1_e = m_e * r1_e * v1_e
 e1_e = 0.5 * m_e * v1_e**2 - G * m_s * m_e / r1_e
 veff1_e = l1_e**2 / (m_e * r1**2) - G * m_s * m_e / r1
 
+'''
 
+'''
 
+# Velocity of the Earth in its final orbit (assuming circular):
+v_circ1 = np.sqrt(G * m_s / r1_e)
 
-print('\n{:-^50}'.format('RESULTS') +
+# Vectors (radial distance, angular momentum and energy):
+rad1 = np.arange(0, rfinal1, dr1)
+lal = rad1.size
+
+l1 = np.zeros(lal)
+e1 = np.zeros(lal)
+veff1 = np.zeros(lal)
+
+# First component of the former vector using initial values
+rad1[0] = r1
+l1[0] = l1_e
+e1[0] = e1_e
+veff1[0] = veff1_e
+
+veffmin1 = 10**90
+
+'''
+INFORMATION FOR THE EFFECTIVE POTENTIAL OF THE TRANSFER ORBIT
+'''
+
+# Velocities at the perihelion and the aphelion of the transfer orbit
+r_p = r0_e
+r_a = r1_e
+
+v_p = np.sqrt(G * m_s / r_p) * np.sqrt(2 * r_a / (r_p + r_a))
+v_a = np.sqrt(G * m_s / r_a) * np.sqrt(2 * r_p / (r_p + r_a))
+
+# VELOCITY AND KINETIC VARIATIONS OF THE TRANSFER ORBIT CAN BE CALCULATED
+# Velocity variation at the PERIGEE:
+delta_v_p = v_p - v_circ0
+delta_v_a = v_circ1 - v_a
+
+delta_k_p = 0.5 * m_e * (v_p**2 - v_circ0**2)
+delta_k_a = 0.5 * m_e * (v_circ1**2 - v_a**2)
+
+delta = [delta_v_p, delta_v_a, delta_k_p, delta_k_a]
+
+print('\n{:_^50}'.format('RESULTS') +
 
       '\nINITIAL ORBIT:' +
       '\n- The angular momentum is', '{:.2e}'.format(l0_e), 'kgm^2/s.' +
       '\n- The energy is', '{:.2e}'.format(e0_e), 'J.' +
       '\n- The minimum effective potential is', '{:.2e}'.format(veff0_e), 'J.' +
+      '\n{:_^50}'.format('') +
 
-      '\n{:-^50}'.format('') +
       '\nFINAL ORBIT:' +
       '\n- The angular momentum is:', '{:.2e}'.format(l1_e), 'kgm^2/s.' +
       '\n- The energy is', '{:.2e}'.format(e1_e), 'J.' +
-      '\n- The minimum effective potential is', '{:.2e}'.format(veff1_e), 'J.')
+      '\n- The minimum effective potential is', '{:.2e}'.format(veff1_e), 'J.' +
+      '\n{:_^50}'.format(''))
+
+for i in range(len(delta)):
+    j = ['vp =', 'va =', 'Kp =', 'Ka']
+    if i % 2 == 0:
+        print('\n- The ' + j[i] + ' variation to transfer from the initial circular orbit to the transfer orbit at its perihelion is Delta VP =',
+              '{:.2e}'.format(delta[i]), 'm/s')
+
+    else:
+        print('- The velocity var', delta[i])
