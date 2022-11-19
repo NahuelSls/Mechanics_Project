@@ -111,27 +111,28 @@ delta_v_a = v_circ1 - v_a
 delta_k_p = 0.5 * m_e * (v_p**2 - v_circ0**2)
 delta_k_a = 0.5 * m_e * (v_circ1**2 - v_a**2)
 
-delta = [delta_v_p, delta_v_a, delta_k_p, delta_k_a]
-
-print('\n{:_^50}'.format('RESULTS') +
+print('\n{:_^70}'.format('RESULTS') +
+      '\n{:_^70}'.format('') +
 
       '\nINITIAL ORBIT:' +
       '\n- The angular momentum is', '{:.2e}'.format(l0_e), 'kgm^2/s.' +
       '\n- The energy is', '{:.2e}'.format(e0_e), 'J.' +
       '\n- The minimum effective potential is', '{:.2e}'.format(veff0_e), 'J.' +
-      '\n{:_^50}'.format('') +
+      '\n{:_^70}'.format('') +
 
       '\nFINAL ORBIT:' +
       '\n- The angular momentum is:', '{:.2e}'.format(l1_e), 'kgm^2/s.' +
       '\n- The energy is', '{:.2e}'.format(e1_e), 'J.' +
       '\n- The minimum effective potential is', '{:.2e}'.format(veff1_e), 'J.' +
-      '\n{:_^50}'.format(''))
+      '\n{:_^70}'.format('') +
+      '\n{:_^70}'.format('') +
 
-for i in range(len(delta)):
-    j = ['vp =', 'va =', 'Kp =', 'Ka']
-    if i % 2 == 0:
-        print('\n- The ' + j[i] + ' variation to transfer from the initial circular orbit to the transfer orbit at its perihelion is Delta VP =',
-              '{:.2e}'.format(delta[i]), 'm/s')
-
-    else:
-        print('- The velocity var', delta[i])
+      '\nVARIATIONS:' +
+      '\n- The velocity variation to transfer from the initial orbit to the transfer orbit at its PERIHELION is Delta VP =',
+      '{:.2e}'.format(delta_v_p), 'm/s.' +
+      '\n- The velocity variation to transfer from the transfer orbit at its APHELION to the final circular orbit is Delta VA =',
+      '{:.2e}'.format(delta_v_a), 'm/s.' +
+      '\n\n- The K variation to transfer from the initial circular orbit to the transfer orbit at its PERIHELION is Delta KP =',
+      '{:.2e}'.format(delta_k_p), 'm/s.' +
+      '\n- The K variation to transfer from the transfer orbit at its APHELION to the final circular orbit is Delta KA =',
+      '{:.2e}'.format(delta_k_a), 'm/s.')
