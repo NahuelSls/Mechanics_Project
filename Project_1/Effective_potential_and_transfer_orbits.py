@@ -111,6 +111,16 @@ delta_v_a = v_circ1 - v_a
 delta_k_p = 0.5 * m_e * (v_p**2 - v_circ0**2)
 delta_k_a = 0.5 * m_e * (v_circ1**2 - v_a**2)
 
+# Init. radius, rad. step and final radius of the simulation of the transfer orbit:
+r_i = 1e7
+d_r_i = 1e9
+r_final_i = 50e11
+
+# Angular momentum and energy of the Earth in transfer orbit:
+li_e = m_e * r_p * v_p
+ei_e = 0.5 * m_e * v_p**2 - G * m_s * m_e / r_p
+veffi_e = li_e**2 / (m_e * r1**2) - G * m_s * m_e / r1
+
 print('\n{:_^70}'.format('RESULTS') +
       '\n{:_^70}'.format('') +
 
@@ -135,4 +145,9 @@ print('\n{:_^70}'.format('RESULTS') +
       '\n\n- The K variation to transfer from the initial circular orbit to the transfer orbit at its PERIHELION is Delta KP =',
       '{:.2e}'.format(delta_k_p), 'm/s.' +
       '\n- The K variation to transfer from the transfer orbit at its APHELION to the final circular orbit is Delta KA =',
-      '{:.2e}'.format(delta_k_a), 'm/s.')
+      '{:.2e}'.format(delta_k_a), 'm/s.' +
+      '\n{:_^70}'.format('') +
+      '\n{:_^70}'.format('') +
+
+      '\nTRANSFER ORBIT:' +
+      '\nThe angular momentum is')
