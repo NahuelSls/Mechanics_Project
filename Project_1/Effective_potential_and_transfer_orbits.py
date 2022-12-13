@@ -70,7 +70,7 @@ e1_e = 0.5 * m_e * v1_e**2 - G * m_s * m_e / r1_e
 veff1_e = l1_e**2 / (m_e * r1**2) - G * m_s * m_e / r1
 
 '''
---
+
 '''
 
 # Velocity of the Earth in its final orbit (assuming circular):
