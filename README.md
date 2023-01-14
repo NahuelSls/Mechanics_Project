@@ -1,3 +1,3 @@
 # Mechanics Project
-UPC - EETAC projects using Python.
+UPC - EETAC project using Python
 
