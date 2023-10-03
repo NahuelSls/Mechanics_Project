@@ -10,6 +10,3 @@ Hohmann orbits are semi-ellipses which may take an object from one circular orbi
 orbit of different radius (and energy).
 
 In this exercise, we will assume that the Earth's orbit is practically circular. 
-
-
-
